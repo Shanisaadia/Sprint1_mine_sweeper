@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+
+<head >
+  <meta charset="utf-8">
+  <title>Mine Sweeper</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="init()" onkeyup="handleKey(event)">
+  <h1>Mine Sweeper</h1>
+  <div class="timer"></div>
+  <button class ="btn easy" onclick="checkLevel(1)">Easy</button>
+  <button class ="btn hard" onclick="checkLevel(2)">hard</button>
+  <button class ="btn extreme" onclick="checkLevel(3)">extreme</button>
+
+  <h2 class="counter"></h2>
+  <div class="victory"></div>
+  <div class="restart"></div>
+  <table>
+    <tbody class="board-container"></tbody>
+  </table>
+
+  <script src="js/util.js"></script>
+  <script src="js/level.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
+
