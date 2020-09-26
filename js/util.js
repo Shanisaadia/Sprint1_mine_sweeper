@@ -52,19 +52,6 @@ function smileyHandler(value) {
     if (value == '3') elSmiley.innerText = ('😎');
 }
 
-function countMarkedMines() {
-    var markedMineCount = 0;
-    for (var i = 0; i < gLevel.size; i++) {
-        for (var j = 0; j < gLevel.size; j++) {
-            var currCell = gBoard[i][j];
-            if (currCell.isMine && currCell.isMarked) {
-                markedMineCount++;
-            }
-        }
-    }
-    return markedMineCount;
-}
-
 function newGameUpdateDOM() {
     // Hide Game over element
     var elgameOver = document.querySelector('.game-over');
@@ -75,4 +62,33 @@ function newGameUpdateDOM() {
     // Hide victory announcement
     var elVictory = document.querySelector('.victory');
     elVictory.style.display = 'none';
+    var elCount = document.querySelector('.elements-count');
+    elCount.style.display = 'none';
+}
+
+function renderMineAndMarkedCount() {
+    var str = '';
+    var elCount = document.querySelector('.elements-count');
+    var mineCount = gMine.length;
+    var markedCount = gGame.markedCount;
+    str = `${mineCount} 💣 ${markedCount} 🚩`;
+    elCount.innerHTML = str;
+    elCount.style.display = 'block';
+}
+
+function renderLifeCount() {
+    var str = '';
+    var elLifeCount = document.querySelector('.life-count');
+    for (var i = 0; i < gliveCount; i++) {
+        str += '❤ ';
+    }
+    elLifeCount.innerHTML = str;
+}
+
+function renderSafeClick() {
+    var str = '';
+    var elSafeClick = document.querySelector('.safe-available span');
+    if (gSafeClick > 0) str = gSafeClick;
+    else str = 'No';
+    elSafeClick.innerText = str;
 }

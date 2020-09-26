@@ -25,12 +25,12 @@ h1 {
 
 table, td {
     text-align: center;
-    font-size:24px;
+    font-size:20px;
     border: 1px solid black;
     border-collapse: collapse;
     margin: auto;
     background-color:rgb(70, 70, 70);
-    margin-top: 30px;
+    /* margin-top: 30px; */
     color:white;
     border: 1px solid black;
     font-weight: bold;
@@ -43,7 +43,6 @@ table, td {
     margin: 0;
     width: 60px;
     height: 60px;
-
 }
 
 .hide {
@@ -99,9 +98,8 @@ table, td {
 
 .smiley {
     margin: auto;
-    font-size: 60px;
+    font-size: 50px;
     display: block; 
-
 }
 
 .victory {
@@ -112,18 +110,31 @@ table, td {
     border-radius: 80px;
     background-color:rgb(24, 101, 160);
     font-family: "Lucida Console", Monaco, monospace;
-    font-size: 32px;
+    font-size: 34px;
     letter-spacing: 5px;
     word-spacing: 8px;
-    color: #000000;
-    font-weight: 700;
+    color: white;
+    font-weight: 900;
     text-decoration: none;
     font-style: normal;
     font-variant: normal;
     text-transform: uppercase;
-    width: 550px;
-    margin-bottom: 10px;
+    width: 650px;
+    margin-bottom: 15px;
+    text-decoration: blink;
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 0.6s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function:ease-in-out;
+    -webkit-animation-direction: alternate;
 }
+
+@-webkit-keyframes blinker {
+    from {opacity: 1.0;}
+    to {opacity: 0.0;}
+  }
+
+
 
 .timer {
     float:right;
@@ -156,4 +167,56 @@ table, td {
     font-variant: normal;
     text-transform: uppercase;
     margin: 20px;
+}
+
+.elements-count {
+    margin-top: 30px;
+    background-color:transparent;
+    font-size: 40px;
+    color: #000000;
+    font-weight: 500;
+    word-spacing: 20px;
+}
+
+.life-count {
+    color: rgb(232, 24, 24);
+    font-size: 60px;
+    word-spacing: 20px;
+    padding-top: 20px;
+}
+
+.safe {
+    cursor: pointer;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    border-radius: 40px;
+    background-color:rgb(242, 217, 31);
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 28px;
+    letter-spacing: 5px;
+    word-spacing: 10px;
+    color: #000000;
+    font-weight: 900;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    margin: auto;
+    width: 400px;
+    margin-top: 10px;
+    outline: none;
+    box-shadow: 0 9px rgb(84, 84, 84);
+}
+.safe:active {
+    background-color:rgb(242, 217, 31);
+    box-shadow: 0 5px rgb(84, 84, 84);
+    transform: translateY(4px);
+  }
+  
+.safe-available {
+    font-size: 16px;
+
+}
+
+.mark {
+    background-color: lightpink;
 }
