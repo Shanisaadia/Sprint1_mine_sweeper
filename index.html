@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Mine Sweeper</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="init()">
+  <div class="timer"></div>
+  <h1>Mine Sweeper</h1>
+
+  <div class="smiley" onclick="init()">😀</div>
+  <div>
+    <table>
+      <tbody class="board-container"></tbody>
+    </table>
+  </div>
+
+  <div class="life-count">❤ ❤ ❤</div>
+  <div class="elements-count">2 💣 0 🚩</div>
+  <div class="safe" onclick="safeClicked()" >SAFE CLICK 
+    <div class ="safe-available"><span>3</span> clicks available</div>
+  </div>
+  <div class="buttons">
+    <button class="btn easy" onclick="checkLevel(4)">Easy</button>
+    <button class="btn hard" onclick="checkLevel(8)">hard</button>
+    <button class="btn extreme" onclick="checkLevel(12)">extreme</button>
+  </div>
+
+  <div class="victory">YOU ARE THE WINNER</div>
+  <div class="game-over">GAME OVER</div>
+  <button class="restart" onclick="init()">Want to play again?..</button>
+  <div class="footer"> </div>
+  <script src="js/util.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/play.js"></script>
+</body>
+
+</html>
