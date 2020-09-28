@@ -98,7 +98,6 @@ function leftCellClicked(elCell, i, j,) {
     if (gliveCount < 1) return;
     if (!gGame.isOn) return;
     console.log('Left cell clicked');
-
     if (gClicksCounter === 0) {   // If this is the first click
         console.log('first left click');
         startTimer();
@@ -107,62 +106,55 @@ function leftCellClicked(elCell, i, j,) {
         setMinesNegsCountBoard(gBoard);
         renderBoard(gBoard, '.board-container');
         renderMineAndMarkedCount();
-    } else {
-
-        var currCell = gBoard[i][j];
-        if (currCell.isShown) return;
-        // Left click on a number >> reveal only that cell 
-        if (currCell.minesAroundCount > 0 && !currCell.isMine) {
-            currCell.isShown = true;
-            gGame.shownCount++;
+    }
+    console.log('ss');
+    var currCell = gBoard[i][j];
+    if (currCell.isShown) return;
+    if (currCell.minesAroundCount > 0 && !currCell.isMine) { // Left click on a number >> reveal only that cell 
+        currCell.isShown = true;
+        gGame.shownCount++;
+        elCell.classList.remove('hide');
+    }
+    if (currCell.minesAroundCount === 0 && !currCell.isMine) { // Left click on zero >> reveal the cell and 1st degree neighbors
+        currCell.isShown = true;
+        gGame.shownCount++;
+        elCell.classList.remove('hide');
+        expandShown(gBoard, i, j);
+    }
+    if (currCell.isMarked) return; // Left click on marked cell does nothing
+    if (currCell.isMine) { // left click all a mine >> reveal all other mines
+        currCell.isShown = true;
+        gGame.shownCount++;
+        if (gliveCount >= 2) {
+            gliveCount--;
+            renderLifeCount();
+            console.log('1 Lives count is:', gliveCount);
+            smileyHandler(2);
+            setTimeout(function () { smileyHandler(1); }, 2000);
             elCell.classList.remove('hide');
-        }
-        // Left click on zero >> reveal the cell and 1st degree neighbors
-        if (currCell.minesAroundCount === 0 && !currCell.isMine) {
-            currCell.isShown = true;
-            gGame.shownCount++;
-            elCell.classList.remove('hide');
-            expandShown(gBoard, i, j);
-        }
-        // Left click on marked cell does nothing
-        if (currCell.isMarked) return;
-        // left click all a mine >> reveal all other mines
-        if (currCell.isMine) {
-            currCell.isShown = true;
-            gGame.shownCount++;
-            if (gliveCount >= 2) {
-                gliveCount--;
-                renderLifeCount();
-                console.log('1 Lives count is:', gliveCount);
-                smileyHandler(2);
-                setTimeout(function () { smileyHandler(1); }, 2000);
+            setTimeout(function () {
+                elCell.classList.add('hide');
+                currCell.isShown = false;
+            }, 1000);
+        }       
+        else if (gliveCount === 1) {
+            gliveCount--;
+            renderLifeCount();
+            console.log('2 Lives count is:', gliveCount);
+            smileyHandler(2);
+            for (var i = 0; i < gMine.length; i++) {
+                var currMine = gMine[i];
+                var elCell = document.querySelector(`.cell-${currMine.i}-${currMine.j}`);
                 elCell.classList.remove('hide');
-                setTimeout(function () {
-                    elCell.classList.add('hide');
-                    currCell.isShown = false;
-                }, 2000);
-
-            }
-
-            else if (gliveCount === 1) {
-                gliveCount--;
-                renderLifeCount();
-                console.log('2 Lives count is:', gliveCount);
-                smileyHandler(2);
-                for (var i = 0; i < gMine.length; i++) {
-                    var currMine = gMine[i];
-                    var elCell = document.querySelector(`.cell-${currMine.i}-${currMine.j}`);
-                    elCell.classList.remove('hide');
-                    console.log('game over');
-                    gameOver();
-                }
-
+                console.log('game over');
+                gameOver();
             }
         }
     }
     checkWin();
-
 }
+
+
 
 // right cell clicked
 function cellMarked(elCell) {
